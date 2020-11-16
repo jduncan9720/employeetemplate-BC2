@@ -47,22 +47,56 @@ inquirer.prompt([
         choices: ['Manager', 'Engineer', 'Intern']
     }
 ])
-.then((response) => {
-    console.log(response)
-    switch(response.role){
-        case "Manager":
-
-        break;
-        case "Engineer":
-
-        break;
-        case "Intern":
-
-        break;
-    }
-
+    .then((response) => {
+        switch (response.role) {
+            case "Manager":
+                inquirer.prompt({
+                    type: 'number',
+                    name: 'office',
+                    message: 'What is your office number?',
+                    validate: (office) => {
+                        if (office) {
+                            return true
+                        } else {
+                            console.log("Enter the office number.")
+                            return false
+                        }
+                    }
+                })
+                break;
+            case "Engineer":
+                inquirer.prompt({
+                    type: 'input',
+                    name: 'github',
+                    message: 'What is your Gihub username?',
+                    validate: (github) => {
+                        if (github) {
+                            return true
+                        } else {
+                            console.log("Enter your username.")
+                            return false
+                        }
+                    }
+                })
+                break;
+            case "Intern":
+                inquirer.prompt({
+                    type: 'input',
+                    name: 'school',
+                    message: 'What school did you go to?',
+                    validate: (school) => {
+                        if (school) {
+                            return true
+                        } else {
+                            console.log("Enter your school's name.")
+                            return false
+                        }
+                    }
+                })
+                break;
+        }
+    })
     
-})
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
