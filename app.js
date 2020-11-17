@@ -10,7 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const emplyees= {manager:[], engineer:[], interns:[]};
+const employees= {manager:[], engineer:[], interns:[]};
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
@@ -68,6 +68,9 @@ inquirer.prompt([
                 }).then((answer) => {
                     let managers = new Manager(answer.office);
                     managers.getOffice();
+                    employees.manager.push(response)
+                    console.log(employees)
+
                 });
                 break;
 
