@@ -44,6 +44,19 @@ inquirer.prompt([
         }
     },
     {
+        type: 'email',
+        name: 'email',
+        message: 'What is your/employees email address?',
+        validate: (email) => {
+            if (email) {
+                return true
+            } else {
+                console.log('Enter a valid email address.')
+                return false
+            }
+        }
+    },
+    {
         type: 'list',
         name: 'role',
         message: 'What is your/emplyees role in the company?',
@@ -66,11 +79,8 @@ inquirer.prompt([
                         }
                     }
                 }).then((answer) => {
-                    let managers = new Manager(answer.office);
-                    managers.getOffice();
-                    employees.manager.push(response)
-                    console.log(employees)
-
+                    let managers = new Manager(response.name, response.id, response.email, answer.office);
+                    managers.getOfficeNumber();
                 });
                 break;
 
@@ -88,7 +98,8 @@ inquirer.prompt([
                         }
                     }
                 }).then((answer) => {
-                    let engineers = new Engineer(answer.github)
+                    let engineers = new Engineer(response.name, response.id, response.email, answer.github);
+                    engineers.getGithub();
                 })
                 break;
             case "Intern":
@@ -105,8 +116,8 @@ inquirer.prompt([
                         }
                     }
                 }).then((answer) => {
-                    answer.school = school
-                    let interns = new Intern(school)
+                    let interns = new Intern(response.name, response.id, response.email, answer.school);
+                    interns.getSchool();
                 })
                 break;
         }
