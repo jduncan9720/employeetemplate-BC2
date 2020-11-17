@@ -81,6 +81,7 @@ inquirer.prompt([
                 }).then((answer) => {
                     let managers = new Manager(response.name, response.id, response.email, answer.office);
                     managers.getOfficeNumber();
+                    
                 });
                 break;
 
@@ -122,6 +123,8 @@ inquirer.prompt([
                 break;
         }
     })
+
+
     
 
 // After the user has input all employees desired, call the `render` function (required
