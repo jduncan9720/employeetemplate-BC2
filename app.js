@@ -10,6 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+employees = [],
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -62,13 +63,17 @@ inquirer.prompt([
                             return false
                         }
                     }
+                }).then((answer) => {
+                    answer.office = office
+                    let managers = new Manager(office)
                 })
                 break;
+
             case "Engineer":
                 inquirer.prompt({
                     type: 'input',
                     name: 'github',
-                    message: 'What is your Gihub username?',
+                    message: 'What is your Github username?',
                     validate: (github) => {
                         if (github) {
                             return true
@@ -77,6 +82,9 @@ inquirer.prompt([
                             return false
                         }
                     }
+                }).then((answer) => {
+                    answer.github = github
+                    let engineers = new Engineer(github)
                 })
                 break;
             case "Intern":
@@ -92,6 +100,9 @@ inquirer.prompt([
                             return false
                         }
                     }
+                }).then((answer) => {
+                    answer.school = school
+                    let interns = new Intern(school)
                 })
                 break;
         }
