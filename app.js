@@ -10,10 +10,12 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-employees = [],
-
+const emplyees= {manager:[], engineer:[], interns:[]};
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+
+//function to hold the inquirer prompts and just pass in parameters
+
 inquirer.prompt([
     {
         type: 'input',
@@ -54,19 +56,19 @@ inquirer.prompt([
                 inquirer.prompt({
                     type: 'number',
                     name: 'office',
-                    message: 'What is your office number?',
+                    message: "What is your office number?",
                     validate: (office) => {
                         if (office) {
                             return true
                         } else {
-                            console.log("Enter the office number.")
+                            console.log("Enter your office number.")
                             return false
                         }
                     }
                 }).then((answer) => {
-                    answer.office = office
-                    let managers = new Manager(office)
-                })
+                    let managers = new Manager(answer.office);
+                    managers.getOffice();
+                });
                 break;
 
             case "Engineer":
@@ -83,8 +85,7 @@ inquirer.prompt([
                         }
                     }
                 }).then((answer) => {
-                    answer.github = github
-                    let engineers = new Engineer(github)
+                    let engineers = new Engineer(answer.github)
                 })
                 break;
             case "Intern":
