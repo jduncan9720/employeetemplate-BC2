@@ -79,9 +79,8 @@ inquirer.prompt([
                         }
                     }
                 }).then((answer) => {
-                    let managers = new Manager(response.name, response.id, response.email, answer.office);
-                    managers.getOfficeNumber();
-                    
+                    employees.manager.push(new Manager(response.name, response.id, response.email, answer.office));
+                    console.log(employees)
                 });
                 break;
 
@@ -123,6 +122,7 @@ inquirer.prompt([
                 break;
         }
     })
+
 
 
     
