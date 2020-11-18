@@ -10,7 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const employees= {managers:[], engineers:[], interns:[]};
+const employees= {manager:[], engineer:[], intern:[]};
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 askQuestions();
@@ -79,7 +79,7 @@ inquirer.prompt([
                         }
                     }
                 }).then((answer) => {
-                    employees.managers.push(new Manager(response.name, response.id, response.email, answer.office));
+                    employees.manager.push(new Manager(response.name, response.id, response.email, answer.office));
                     console.log(employees)
                     askAgain()
                 });
@@ -99,7 +99,7 @@ inquirer.prompt([
                         }
                     }
                 }).then((answer) => {
-                    employees.engineers.push(new Engineer(response.name, response.id, response.email, answer.github));
+                    employees.engineer.push(new Engineer(response.name, response.id, response.email, answer.github));
                     console.log(employees)
                     askAgain()
                 });
@@ -118,7 +118,7 @@ inquirer.prompt([
                         }
                     }
                 }).then((answer) => {
-                    employees.interns.push(new Intern(response.name, response.id, response.email, answer.school));
+                    employees.intern.push(new Intern(response.name, response.id, response.email, answer.school));
                     console.log(employees)
                     askAgain()
                 })
@@ -140,15 +140,22 @@ function askAgain(){
         if (response.again === true){
             askQuestions();
         } else {
-            //renderer();
+            // renderer();
         }
     })
 }
     
 // function renderer(){
 //     render(employees)
-//     console.log(template)
 // }
+
+// 1. Change employees to start as an empty array
+// 2. Make sure each one has the role property on them (so that can be used later)
+// 3. If all your console logs for them employees array are working as expected then I would just add one more inside the askAgain() function right before you pass it into the htmlRenderer function just to make sure it’s all correct
+// 4. Where you have the renderer function called i would have it call a separate function that then does all the logic to create the html file and pass the data into renderer- for example that function could be called makeTeam()
+// 5. Inside the makeTeam() function- you’ll check to make sure the file exists using the output_dir- and then if it does exist you’ll pass the whole employee array inside the render function which will be called inside of the writeFileSync function (this will take the returned item from the render(employees) and along with the outputPath and create the files — So look up syntax for fs.writeFileSync
+
+// You’re super close! Just reformat employees- and pass that in and that should help get you in the right direction!
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
