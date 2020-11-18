@@ -125,7 +125,6 @@ inquirer.prompt([
     })
 
 
-
     
 
 // After the user has input all employees desired, call the `render` function (required
