@@ -62,8 +62,7 @@ inquirer.prompt([
         message: 'What is your/emplyees role in the company?',
         choices: ['Manager', 'Engineer', 'Intern']
     }
-])
-    .then((response) => {
+]).then((response) => {
         switch (response.role) {
             case "Manager":
                 inquirer.prompt({
@@ -80,7 +79,7 @@ inquirer.prompt([
                     }
                 }).then((answer) => {
                     employees.push(new Manager(response.name, response.id, response.email, response.role, answer.office));
-                    console.log(employees)
+                    //console.log(employees)
                     askAgain()
                 });
                 break;
@@ -100,7 +99,7 @@ inquirer.prompt([
                     }
                 }).then((answer) => {
                     employees.push(new Engineer(response.name, response.id, response.email, response.role, answer.github));
-                    console.log(employees)
+                    //console.log(employees)
                     askAgain()
                 });
                     break;
@@ -119,7 +118,7 @@ inquirer.prompt([
                     }
                 }).then((answer) => {
                     employees.push(new Intern(response.name, response.id, response.email, response.role, answer.school));
-                    console.log(employees)
+                    //console.log(employees)
                     askAgain()
                 })
                 break;
@@ -140,20 +139,30 @@ function askAgain(){
         if (response.again === true){
             askQuestions();
         } else {
-            // renderer();
+            console.log(employees)
+            makeTeam();
         }
     })
-}
+};
     
-// function renderer(){
-//     render(employees)
-// }
+function makeTeam(){
+    fs.writeFile('./output/team.html', render(employees), function (err) {
+        if (err) throw err;
+        console.log("Created!")
+       })
+};
+
 
 // 1. Change employees to start as an empty array
 // 2. Make sure each one has the role property on them (so that can be used later)
-// 3. If all your console logs for them employees array are working as expected then I would just add one more inside the askAgain() function right before you pass it into the htmlRenderer function just to make sure it’s all correct
-// 4. Where you have the renderer function called i would have it call a separate function that then does all the logic to create the html file and pass the data into renderer- for example that function could be called makeTeam()
-// 5. Inside the makeTeam() function- you’ll check to make sure the file exists using the output_dir- and then if it does exist you’ll pass the whole employee array inside the render function which will be called inside of the writeFileSync function (this will take the returned item from the render(employees) and along with the outputPath and create the files — So look up syntax for fs.writeFileSync
+// 3. If all your console logs for them employees array are working as expected then I would just add one more inside the askAgain() 
+//    function right before you pass it into the htmlRenderer function just to make sure it’s all correct
+// 4. Where you have the renderer function called i would have it call a separate function that then does all the logic to create 
+//    the html file and pass the data into renderer- for example that function could be called makeTeam()
+// 5. Inside the makeTeam() function- you’ll check to make sure the file exists using the output_dir- and then if it does exist 
+//    you’ll pass the whole employee array inside the render function which will be called inside of the writeFileSync function 
+//    (this will take the returned item from the render(employees) and along with the outputPath and create the files - So look up 
+//    syntax for fs.writeFileSync
 
 // You’re super close! Just reformat employees- and pass that in and that should help get you in the right direction!
 
