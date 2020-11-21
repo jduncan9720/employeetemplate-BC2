@@ -34,14 +34,7 @@ inquirer.prompt([
         type: 'number',
         name: 'id',
         message: 'What is your/employees id number?',
-        validate: (id) => {
-            if (id) {
-                return true
-            } else {
-                console.log('Enter the ID number.')
-                return false
-            }
-        }
+        validate: value => isNaN(parseInt(value)) ? 'Please enter a number!': true 
     },
     {
         type: 'email',
@@ -69,14 +62,7 @@ inquirer.prompt([
                     type: 'number',
                     name: 'office',
                     message: "What is your office number?",
-                    validate: (office) => {
-                        if (office) {
-                            return true
-                        } else {
-                            console.log("Enter your office number.")
-                            return false
-                        }
-                    }
+                    validate: value => isNaN(parseInt(value)) ? 'Please enter a number!': true
                 }).then((answer) => {
                     employees.push(new Manager(response.name, response.id, response.email, response.role, answer.office));
                     //console.log(employees)
