@@ -153,35 +153,3 @@ function makeTeam(){
 };
 
 
-// 1. Change employees to start as an empty array
-// 2. Make sure each one has the role property on them (so that can be used later)
-// 3. If all your console logs for them employees array are working as expected then I would just add one more inside the askAgain() 
-//    function right before you pass it into the htmlRenderer function just to make sure it’s all correct
-// 4. Where you have the renderer function called i would have it call a separate function that then does all the logic to create 
-//    the html file and pass the data into renderer- for example that function could be called makeTeam()
-// 5. Inside the makeTeam() function- you’ll check to make sure the file exists using the output_dir- and then if it does exist 
-//    you’ll pass the whole employee array inside the render function which will be called inside of the writeFileSync function 
-//    (this will take the returned item from the render(employees) and along with the outputPath and create the files - So look up 
-//    syntax for fs.writeFileSync
-
-// You’re super close! Just reformat employees- and pass that in and that should help get you in the right direction!
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
