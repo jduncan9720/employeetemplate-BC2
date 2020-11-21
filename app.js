@@ -132,7 +132,7 @@ function askAgain(){
 };
     
 function makeTeam(){
-    fs.writeFile('./output/team.html', render(employees), function (err) {
+    fs.writeFile(outputPath, render(employees), function (err) {
         if (err) throw err;
         console.log("Created!")
        })
